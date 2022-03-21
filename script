@@ -25,4 +25,4 @@ else echo "NO CONTAINERS"
 fi
 
 #start docker-compose
-cd ./test-jenkins/ && docker-compose up -d
+cd /home/parf/jenkins/workspace/HW2/ && docker-compose up -d
