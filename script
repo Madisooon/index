@@ -17,6 +17,7 @@ else wget https://wordpress.org/latest.tar.gz
 fi
 
 
+
 #revome old containers
 if docker stop $(docker ps -aq)&> /dev/null; then
    docker rm $(docker ps -aq)
@@ -25,4 +26,4 @@ else echo "NO CONTAINERS"
 fi
 
 #start docker-compose
-cd /home/parf/jenkins/workspace/HW2/ && docker-compose -f stack.yml up
+cd /home/parf/jenkins/workspace/HW2/ && docker-compose up -d
