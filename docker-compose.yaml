@@ -4,15 +4,11 @@ services:
         image: php:7.4.28-apache-buster
         ports:
             - 80:80
-        volumes:
-            - wordpress:/var/www/html
         links:
             - 'mariadb'
 
     mariadb:
         image: mariadb:10.7.3
-        volumes:
-            - mariadb:/var/lib/mysql
         environment:
             TZ: "Europe/Minsk"
             MYSQL_ALLOW_EMPTY_PASSWORD: "no"
@@ -21,16 +17,4 @@ services:
             MYSQL_PASSWORD: 'testpassword'
             MYSQL_DATABASE: 'testdb'
 
-volumes:
-    mariadb:
-      driver: local
-      driver_opts:
-        type: none
-        o: bind
-        device: /home/parf/jenkins/mysql
-    wordpress:
-      driver: local
-      driver_opts:
-        type: none
-        o: bind
-        device: /home/parf/jenkins/wp
+
