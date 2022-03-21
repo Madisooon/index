@@ -4,8 +4,8 @@ services:
         image: php:7.4.28-apache-buster
         ports:
             - 80:80
-        volumes:
-            - wordpress:/var/www/html
+       # volumes:
+          #  - wordpress:/var/www/html
         links:
             - 'mariadb'
 
