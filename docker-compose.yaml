@@ -4,7 +4,7 @@ services:
         image: wordpress
         restart: always
         ports:
-            - 80:80
+            - 8888:80
         environment: 
             WORDPRESS_DB_HOST: mariadb
             WORDPRESS_DB_USER: "$${DATABASE_USER}"
@@ -34,10 +34,10 @@ volumes:
       driver_opts:
         type: none
         o: bind
-        device: /var/lib/mysql
+        device: /var/jenkins/mysql
     wordpress:
       driver: local
       driver_opts:
         type: none
         o: bind
-        device: wordpress:/var/www/html
+        device: /var/jenkins/wordpress
