@@ -28,4 +28,16 @@ services:
             MYSQL_PASSWORD: "$${DATABASE_PASSWORD}"
             MYSQL_DATABASE: "$${DATABASE_NAME}"
 
-
+volumes:
+    mariadb:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /home/parf/jenkins/mysql
+    wordpress:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /home/parf/jenkins/wordpress
