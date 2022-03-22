@@ -22,4 +22,5 @@ else echo "NO CONTAINERS"
 fi
 
 #start docker-compose
+docker volume rm hw2_wordpress
 docker-compose up -d
