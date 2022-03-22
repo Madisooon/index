@@ -7,16 +7,12 @@ else mkdir mysql
    echo "MYSQL DIRECTORY HAS BEEN CREATED"
 fi
 
-#download wordpress and make directory
+#check wordpress directory
 if ls ./wordpress/ &> /dev/null; then
-   echo "WORDPRESS HAS ALREADY DOWNLOADED"
-else wget https://wordpress.org/latest.tar.gz
-     tar -xvzf latest.tar.gz
-     rm ./latest.tar.*
-     echo "WORDPRESS HAS BEEN DOWNLOADED"
-fi
-
-
+   echo "WORDPRESS HAS ALREADY CREATED"
+else mkdir ./wordpress
+      echo "WORDPRESS CATALOG HAS BEEN CREATED"
+      fi
 
 #revome old containers
 if docker stop $(docker ps -aq)&> /dev/null; then
@@ -26,4 +22,4 @@ else echo "NO CONTAINERS"
 fi
 
 #start docker-compose
-cd /home/parf/jenkins/workspace/HW2/ && docker-compose up -d
+docker-compose up -d
