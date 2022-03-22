@@ -34,10 +34,10 @@ volumes:
       driver_opts:
         type: none
         o: bind
-        device: /home/parf/jenkins/mysql
+        device: /var/lib/mysql
     wordpress:
       driver: local
       driver_opts:
         type: none
         o: bind
-        device: /home/parf/jenkins/wordpress
+        device: wordpress:/var/www/html
