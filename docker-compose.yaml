@@ -1,20 +1,44 @@
 version: '3'
 services:
-    php-apache:
-        image: php:7.4.28-apache-buster
+    wordpress:
+        image: wordpress
+        restart: always
         ports:
             - 80:80
+        environment: 
+            WORDPRESS_DB_HOST: mariadb
+            WORDPRESS_DB_USER: "$${DATABASE_USER}"
+            WORDPRESS_DB_PASSWORD: "$${DATABASE_PASSWORD}"
+            WORDPRESS_DB_NAME: "$${DATABASE_NAME}"
+        volumes:
+            - wordpress:/var/www/html
         links:
             - 'mariadb'
 
     mariadb:
         image: mariadb:10.7.3
+        restart: always
+        volumes:
+            - mariadb:/var/lib/mysql
         environment:
             TZ: "Europe/Minsk"
             MYSQL_ALLOW_EMPTY_PASSWORD: "no"
-            MYSQL_ROOT_PASSWORD: "rootpwd"
-            MYSQL_USER: 'testuser'
-            MYSQL_PASSWORD: 'testpassword'
-            MYSQL_DATABASE: 'testdb'
+            MYSQL_ROOT_PASSWORD: "$${ROOT_PASSWD}"
+            MYSQL_USER: "$${DATABASE_USER}"
+            MYSQL_PASSWORD: "$${DATABASE_PASSWORD}"
+            MYSQL_DATABASE: "$${DATABASE_NAME}"
 
+volumes:
+    mariadb:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /var/jenkins/mysql
+    wordpress:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /var/jenkins/wordpress
 
